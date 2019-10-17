@@ -8,10 +8,11 @@ steps:
   displayName: Install docker
   inputs:
     dockerVersion: '17.09.0-ce'
-- task: CmdLine@2
-  displayName: Build
-  inputs:
-    script: 'docker build -t webapp .'
+- script: |
+    docker build -t caldito99/webapp .
+    docker login -u $dockerId -p $(passwd)
+    docker push caldito99/webapp
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
