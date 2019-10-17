@@ -1,0 +1,15 @@
+trigger:
+- master
+pool:
+  vmImage: 'Ubuntu-18.04'
+steps:
+
+- task: DockerInstaller@0
+  displayName: Install docker
+  inputs:
+    dockerVersion: '17.09.0-ce'
+- task: CmdLine@2
+  displayName: Build
+  inputs:
+    script: 'docker build -t webapp .'
+
