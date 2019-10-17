@@ -10,7 +10,7 @@ steps:
     dockerVersion: '17.09.0-ce'
 - script: |
     docker build -t caldito99/webapp .
-    docker login -u $dockerId -p $(passwd)
+    echo $(passwd) | docker login -u caldito99 --password-stdin
     docker push caldito99/webapp
 
 - task: PublishBuildArtifacts@1
