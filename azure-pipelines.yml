@@ -12,6 +12,7 @@ steps:
     docker build -t caldito99/webapp .
     echo $(passwd) | docker login -u caldito99 --password-stdin
     docker push caldito99/webapp
+    cat ./public-html/index.html | sha256sum > checksum
 
 - task: PublishBuildArtifacts@1
   inputs:
