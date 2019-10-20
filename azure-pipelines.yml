@@ -13,10 +13,9 @@ steps:
     echo $(passwd) | docker login -u caldito99 --password-stdin
     docker push caldito99/webapp
     cat ./public-html/index.html | sha256sum > checksum
-
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: './checksum'
     ArtifactName: 'Drop'
     publishLocation: 'Container'
 
